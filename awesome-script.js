@@ -32,12 +32,20 @@ function main() {
     console.error("Please provide a filename");
     return;
   }
-  const numbers = readNumbers(filename);
-  const total = calculateSumWithLoop(numbers);
-  const average = calculateAverageInAStupidWay(numbers);
+  const shouldComputeSum = process.argv.includes("--sum");
+  const shouldComputeAverage = process.argv.includes("--average");
+  const numbers = parseNumbers(filename);
 
-  console.log(`Sum: ${total}`);
-  console.log(`Average: ${average}`);
+  console.log("Numbers:", numbers);
+
+  if (shouldComputeSum) {
+    const total = calculateSumWithLoop(numbers);
+    console.log(`Sum: ${total}`);
+  }
+  if (shouldComputeAverage) {
+    const average = calculateAverageInAStupidWay(numbers);
+    console.log(`Average: ${average}`);
+  }
 }
 
 main();
